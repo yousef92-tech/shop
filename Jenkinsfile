@@ -11,14 +11,17 @@ pipeline {
 
         stage('PUSH image to Docker Hub') {
             steps {
-                sh "docker login -u ysherian -p $DOCKER_PASS"
-        		sh 'docker push ysherian/phpmysql_app'
+                sh 'docker login -u ysherian -p $DOCKER_PASS'
+        		sh 'docker push ysherian/phpmysql_app:apache'
             }
         }
         
+        //the deploy stage is still work in progress. needs become password(vault) configured
+     
         stage('Deploy') {
             steps {
-                sh 'Deploying....'
+                sh 'ansible-playbook first.yml --ask-vault-pass $VAULT_PASS'
+                sh 'Pipeline Done'
             }
         }
     }
