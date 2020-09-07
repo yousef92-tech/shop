@@ -1,0 +1,30 @@
+---
+
+- hosts: all
+  remote_user: jenkins
+  become: yes
+  vars_files:
+    - /home/jenkins/vault.yml
+  ansible_become_password: {{ BECOME_PASS }}
+
+  tasks:
+  - name: Stop a container
+    docker_container:
+      name: apache
+      state: stopped
+
+  - name: remove container
+    docker_container:
+      name: apache
+      state: absent
+
+  - name: pull an image
+    docker_image:
+      name: ysherian/phpmysql_app:apache
+      source: pull
+
+  - name: start container
+    docker_container:
+      name: apache
+      state: started
+
