@@ -20,7 +20,7 @@ pipeline {
      
         stage('Deploy') {
             steps {
-                sh 'ansible-playbook playbook.yml --ask-vault-pass $VAULT_PASS'
+                sh 'ansible-playbook first.yml --ask-vault-pass $VAULT_PASS'
                 sh 'Pipeline Done'
             }
         }
