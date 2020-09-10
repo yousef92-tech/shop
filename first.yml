@@ -8,9 +8,19 @@
   ansible_become_password: {{ BECOME_PASS }}
 
   tasks:
+  - name: create my image
+  - name: Build an image for php_app 
+    docker_image:
+      name: php_app_image
+      build:
+        path: .
+      source: build
+      
   - name: Stop a container
     docker_container:
-      name: apache
+      name: 
+      - php_app
+      - 
       state: stopped
 
   - name: remove container
