@@ -2,17 +2,10 @@ pipeline {
     agent any
 
     stages {
-        stage('Run Docker Compose File') {
-            steps {
-                sh 'docker-compose build'
-        		sh 'docker-compose up -d'
-            }
-        }
-
-        stage('PUSH image to Docker Hub') {
+        stage('build docker images and push to dockerhub') {
             steps {
                 sh 'docker login -u ysherian -p $DOCKER_PASS'
-        		sh 'docker push ysherian/phpmysql_app:apache'
+                sh 'docker build -t ysherian/repo99:'
             }
         }
         
