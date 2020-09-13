@@ -38,7 +38,7 @@
         MYSQL_ROOT_PASSWORD: {{MYSQL_PASS_ROOT}}
             MYSQL_DATABASE: {{MYSQL_NAME}}
             MYSQL_USER: {{MYSQL_USER}}
-            MYSQL_PASSWORD: {{MYSQL_PASSWD}}
+            MYSQL_PASSWORD: {{MYSQL_PASS}}
 
   - name: start container
     docker_container:
