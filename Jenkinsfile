@@ -8,13 +8,11 @@ pipeline {
                 sh 'docker build -t ysherian/repo99:'
             }
         }
-        
-        //the deploy stage is still work in progress. needs become password(vault) configured
-     
+             
         stage('Deploy') {
             steps {
                 sh 'ansible-playbook first.yml --ask-vault-pass $VAULT_PASS'
-                sh 'Pipeline Done'
+                echo 'Pipeline Done'
             }
         }
     }
