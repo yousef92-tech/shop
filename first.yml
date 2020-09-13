@@ -8,12 +8,10 @@
   ansible_become_password: {{ BECOME_PASS }}
 
   tasks:
-  - name: Build an image for php_app 
+  - name: pull php_app image
     docker_image:
-      name: php_app_image
-      build:
-        path: .
-      source: build
+      name: ysherian/repo99:php_app_image
+      source: pull
       
   - name: Stop a container
     docker_container:
@@ -28,14 +26,25 @@
       - php_app
       - mysqli
       state: absent
-
-  - name: pull an image
-    docker_image:
-      name: ysherian/phpmysql_app:apache
-      source: pull
+      
+  - name: start container
+    docker_container:
+      name: mysqli
+      image: mysql:latest
+      command: --default-authentication-plugin=mysql_native_password
+      volumes:
+      - ./php/online-shopping-system/database/onlineshop.sql:/docker-entrypoint-initdb.d/onlineshop.sql
+      env:
+        MYSQL_ROOT_PASSWORD: {{MYSQL_PASS_ROOT}}
+            MYSQL_DATABASE: {{MYSQL_NAME}}
+            MYSQL_USER: {{MYSQL_USER}}
+            MYSQL_PASSWORD: {{MYSQL_PASSWD}}
 
   - name: start container
     docker_container:
-      name: apache
+      name: php_app
+      image: php_app_image
+      links:
+      - "mysqli:db"
       state: started
 
