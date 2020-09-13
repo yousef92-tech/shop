@@ -6,6 +6,7 @@ pipeline {
             steps {
                 sh 'docker login -u ysherian -p $DOCKER_PASS'
                 sh 'docker build -t ysherian/repo99:php_app_image'
+                sh 'docker push ysherian/repo99:php_app_image'
             }
         }
              
