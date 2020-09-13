@@ -7,12 +7,7 @@
     - /home/jenkins/vault.yml
   ansible_become_password: {{ BECOME_PASS }}
 
-  tasks:
-  - name: pull php_app image
-    docker_image:
-      name: ysherian/repo99:php_app_image
-      source: pull
-      
+  tasks:    
   - name: Stop a container
     docker_container:
       name: 
@@ -27,23 +22,24 @@
       - mysqli
       state: absent
       
-  - name: start container
+  - name: start DB
     docker_container:
       name: mysqli
       image: mysql:latest
       command: --default-authentication-plugin=mysql_native_password
-      volumes:
-      - ./php/online-shopping-system/database/onlineshop.sql:/docker-entrypoint-initdb.d/onlineshop.sql
+      exposed_ports:
+      - 6033:3306
       env:
         MYSQL_ROOT_PASSWORD: {{MYSQL_PASS_ROOT}}
             MYSQL_DATABASE: {{MYSQL_NAME}}
             MYSQL_USER: {{MYSQL_USER}}
             MYSQL_PASSWORD: {{MYSQL_PASS}}
+      
 
-  - name: start container
+  - name: start php_app
     docker_container:
       name: php_app
-      image: php_app_image
+      image: ysherian/repo99:php_app_image
       links:
       - "mysqli:db"
       state: started
