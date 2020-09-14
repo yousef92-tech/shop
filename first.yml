@@ -5,7 +5,7 @@
   become: yes
   vars_files:
     - /home/jenkins/vault.yml
-  ansible_become_password: {{ BECOME_PASS }}
+  ansible_become_password: "{{ BECOME_PASS }}"
 
   tasks:    
   - name: Stop a container
