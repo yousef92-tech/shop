@@ -12,8 +12,8 @@
   - name: Stop a container
     docker_container:
       name: 
-      - php_app
-      - mysqli
+      - "php_app"
+      - "mysqli"
       state: stopped
 
   - name: remove container
@@ -26,7 +26,7 @@
   - name: start DB
     docker_container:
       name: mysqli
-      image: mysql
+      image: "mysql:latest"
       command: --default-authentication-plugin=mysql_native_password
       exposed_ports:
       - 6033:3306
@@ -40,7 +40,7 @@
   - name: start php_app
     docker_container:
       name: php_app
-      image: ysherian/repo99:php_app_image
+      image: "ysherian/repo99:php_app_image"
       links:
       - "mysqli:db"
       state: started
