@@ -12,15 +12,15 @@
   - name: Stop a container
     docker_container:
       name: 
-      - "php_app"
-      - "mysqli"
+      - php_app
+      - mysqli
       state: stopped
 
   - name: remove container
     docker_container:
       name: 
-      - "php_app"
-      - "mysqli"
+      - php_app
+      - mysqli
       state: absent
       
   - name: start DB
