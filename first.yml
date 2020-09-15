@@ -5,7 +5,7 @@
   become: yes
   vars_files:
     - ./vault.yml
-  ansible_become_password: {{ BECOME_PASS }}
+  ansible_become_password: "{{ BECOME_PASS }}"
 
   tasks:    
   - name: Stop a container
@@ -30,10 +30,10 @@
       exposed_ports:
       - 6033:3306
       env:
-        MYSQL_ROOT_PASSWORD: {{ MYSQL_PASS_ROOT }}
-        MYSQL_DATABASE: {{ MYSQL_NAME }}
-        MYSQL_USER: {{ MYSQL_USER }}
-        MYSQL_PASSWORD: {{ MYSQL_PASS }}
+        MYSQL_ROOT_PASSWORD: "{{ MYSQL_PASS_ROOT }}"
+        MYSQL_DATABASE: "{{ MYSQL_NAME }}"
+        MYSQL_USER: "{{ MYSQL_USER }}"
+        MYSQL_PASSWORD: "{{ MYSQL_PASS }}"
       
 
   - name: start php_app
