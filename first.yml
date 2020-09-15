@@ -11,16 +11,12 @@
   tasks:    
   - name: Stop a container
     docker_container:
-      name: 
-      - php_app
-      - mysqli
+      name: php_app
       state: stopped
 
   - name: remove container
     docker_container:
-      name: 
-      - php_app
-      - mysqli
+      name: php_app
       state: absent
       
   - name: start DB
