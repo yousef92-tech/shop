@@ -16,6 +16,7 @@
     with_items:
       - mysqli
       - php_app
+    ignore_errors: yes
 
   - name: remove container
     docker_container:
@@ -24,6 +25,7 @@
     with_items:
       - mysqli
       - php_app
+    ignore_errors: yes
       
   - name: start DB
     docker_container:
