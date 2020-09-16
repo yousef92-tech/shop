@@ -11,13 +11,19 @@
   tasks:    
   - name: Stop a container
     docker_container:
-      name: php_app
+      name: {{ item }}
       state: stopped
+    with_items:
+      - mysqli
+      - php_app
 
   - name: remove container
     docker_container:
-      name: php_app
+      name: {{ item }}
       state: absent
+    with_items:
+      - mysqli
+      - php_app
       
   - name: start DB
     docker_container:
