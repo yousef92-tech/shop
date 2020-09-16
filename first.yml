@@ -33,7 +33,7 @@
       image: "mysql:latest"
       command: --default-authentication-plugin=mysql_native_password
       published_ports:
-      - 3306:3306
+      - 6033:3306
       env:
         MYSQL_ROOT_PASSWORD: "{{ MYSQL_PASS_ROOT }}"
         MYSQL_DATABASE: "{{ MYSQL_NAME }}"
