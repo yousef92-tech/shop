@@ -48,6 +48,6 @@
       published_ports:
       - 8008:80
       links:
-      - "mysqli:db"
+      - "mysqli"
       state: started
 
