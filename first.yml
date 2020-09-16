@@ -11,7 +11,7 @@
   tasks:    
   - name: Stop a container
     docker_container:
-      name: {{ item }}
+      name: "{{ item }}"
       state: stopped
     with_items:
       - mysqli
@@ -19,7 +19,7 @@
 
   - name: remove container
     docker_container:
-      name: {{ item }}
+      name: "{{ item }}"
       state: absent
     with_items:
       - mysqli
