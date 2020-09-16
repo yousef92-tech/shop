@@ -45,6 +45,8 @@
     docker_container:
       name: php_app
       image: "ysherian/repo99:php_app_image"
+      published_ports:
+      - 8008:80
       links:
       - "mysqli:db"
       state: started
