@@ -32,7 +32,7 @@
       name: mysqli
       image: "mysql:latest"
       command: --default-authentication-plugin=mysql_native_password
-       exposed_ports:
+      exposed_ports:
       - 6033:3306
       env:
         MYSQL_ROOT_PASSWORD: "{{ MYSQL_PASS_ROOT }}"
