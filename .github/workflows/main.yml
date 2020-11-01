@@ -1,4 +1,4 @@
-name: ci
+name: workflow01
 
 on:
   push:
@@ -6,6 +6,7 @@ on:
 
 jobs:
   main:
+    name: CI 
     runs-on: ubuntu-latest
     steps:
       -
