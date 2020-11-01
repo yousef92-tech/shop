@@ -27,7 +27,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ysherian/repo99:php_app_image
-
+          tags: ysherian/repo99:php_app_image 
+      -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
